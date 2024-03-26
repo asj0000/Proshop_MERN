@@ -1,13 +1,13 @@
 
-export const notfound = (req,res,next)=>{
+ const notfound = (req,res,next)=>{
    const error = new Error( `Not found -${req.originalUrl}`)
    res.statusCode(404)
    next(error)  //call the error handler 
 }
 
-export const errorHandler = (err, req,res,next) =>{
+ const errorHandler = (err, req,res,next) =>{
   
-  let statusCode = res.status === 200 ? 500 : res.status
+  let statusCode = res.statusCode === 200 ? 500 : res.statusCode
   let message = err.message
 
 
@@ -23,4 +23,6 @@ export const errorHandler = (err, req,res,next) =>{
   })
   
 }
+
+export {notfound , errorHandler}
 
