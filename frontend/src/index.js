@@ -14,10 +14,14 @@ import { Provider } from 'react-redux';
 import store from './store.js';
 import HomeScreen from './screens/HomeScreen';
 import reportWebVitals from './reportWebVitals';
+import PrivateRoute from './components/PrivateRoute.js';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen.js';
 import LoginScreen from './screens/LoginScreen.js';
 import RegisterScreen from './screens/RegisterScreen.js';
+import ShippingAddress from './screens/ShippingScreen.js';
+import PaymentScreen from './screens/PaymentScreen.js';
+import PlaceOrderScreen  from './screens/PlaceOrderScreen.js';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +32,14 @@ const router = createBrowserRouter(
         <Route  path="/cart" element={<CartScreen/>}/>
         <Route  path="/login" element={<LoginScreen/>}/>
         <Route  path="/register" element={<RegisterScreen/>}/>
+        
+
+        <Route path='' element={<PrivateRoute/>}>
+          <Route  path="/shipping" element={<ShippingAddress/>}/>
+          <Route  path="/payment" element={<PaymentScreen/>}/>
+          <Route  path="/placeorder" element={<PlaceOrderScreen/>}/>
+
+        </Route>
 
     </Route>
   )
