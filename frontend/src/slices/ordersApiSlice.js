@@ -40,8 +40,32 @@ export const orderApiSlice = apiSlice.injectEndpoints({
       query: ()=>({
         url:  `${ORDERS_URL}/mine`
       })
-    })
+    }),
+
+    //This query will be run by admin or admin controlled screens
+    getAllOrders: builder.query({
+      query: ()=>({
+        url:  ORDERS_URL
+      }),
+      keepUnusedDataFor: 5,
+    }),
+
+     //This query will be run by admin 
+    setDeliveryStatus : builder.mutation({
+      query: (orderid)=>({
+        url:  `${ORDERS_URL}/${orderid}/deliver`,
+        method: 'PUT',
+      })
+    }),
+
   })
 })
 
-export const { useCreateOrderMutation , useGetOrderDetailsQuery , usePayorderMutation , useGetPayPalClientIdQuery , useGetMyOrdersQuery } = orderApiSlice
+export const {  useCreateOrderMutation ,
+                useGetOrderDetailsQuery , 
+                usePayorderMutation , 
+                useGetPayPalClientIdQuery , 
+                useGetMyOrdersQuery,
+                useGetAllOrdersQuery, 
+                useSetDeliveryStatusMutation,
+              } = orderApiSlice
