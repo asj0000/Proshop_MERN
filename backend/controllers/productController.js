@@ -6,8 +6,15 @@ import asyncHandler from '../middleware/asyncHandler.js'
 // @access Public
 
  const getProducts = asyncHandler(async (req,res)=>{
-  const allProducts = await Product.find({})
-  res.json(allProducts)
+
+  const pageSize = 2;
+  const page = Number( req.query.pageNumber) || 1 ;   
+  const count = await Product.countDocuments() //To get the total number of products
+
+  //to skip the products that are already displayed on previous pages
+  const allProducts = await Product.find({}).limit(pageSize).skip( pageSize * (page -1));
+          
+  res.json({ allProducts , page , pages: Math.ceil(count / pageSize)});
 })
 
 

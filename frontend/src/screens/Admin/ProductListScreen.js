@@ -1,15 +1,19 @@
 import { LinkContainer } from "react-router-bootstrap"
 import { Table , Button , Row  , Col} from "react-bootstrap"
+import { useParams } from "react-router-dom"
 import { useGetProductsQuery , useCreateProductMutation ,useDeleteProductMutation } from "../../slices/productsApiSlice.js"
 import Loader from "../../components/Loader.js"
 import Message from "../../components/Message.js"
+import Paginate from "../../components/Paginate.js"
 import {  FaEdit , FaTrash } from "react-icons/fa"
 import { toast } from 'react-toastify'
 
 
 const ProductListScreen = () => {
 
-  const  { data: products , isLoading , isError , refetch  } = useGetProductsQuery()
+  const { pageNumber } = useParams()
+
+  const  { data , isLoading , isError , refetch  } = useGetProductsQuery({pageNumber})
 
   const [ deleteProduct , { isLoading: loadingDelete}] = useDeleteProductMutation()
 
@@ -84,7 +88,7 @@ const ProductListScreen = () => {
             </thead>
             <tbody>
               
-              { products.map( ( product )=>(
+              { data.allProducts.map( ( product )=>(
                   <tr key={product._id}>
                     <td>{product._id}</td>
                     <td>{product.name}</td>
@@ -109,6 +113,7 @@ const ProductListScreen = () => {
 
             </tbody>
             </Table>
+            <Paginate totalpages={data.pages}  currentpage={data.page} isAdmin={true}/>
         </>
     
         
