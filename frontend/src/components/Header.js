@@ -6,6 +6,7 @@ import logo from '../assets/logo.png'
 import { useLogoutMutation } from '../slices/usersApiSlice.js'
 import {logout} from '../slices/authSlice.js'
 import { useNavigate } from 'react-router-dom'
+import SearchBox from './SearchBox.js'
 
 
 const Header = () => {
@@ -44,6 +45,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls='basic-navbar-nav'/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className='ms-auto'>
+            <SearchBox/>
            <LinkContainer to="/cart">
             <Nav.Link ><FaShoppingCart />
             Cart

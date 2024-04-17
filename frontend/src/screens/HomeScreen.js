@@ -7,10 +7,14 @@ import Loader from '../components/Loader.js'
 import Paginate from '../components/Paginate.js'
 import { useGetProductsQuery } from '../slices/productsApiSlice.js'
 import Message from '../components/Message.js'
+import { Link } from 'react-router-dom'
+
 
 const HomeScreen = () => {
    
-  const { pageNumber } = useParams()
+  const { pageNumber , keyword } = useParams();
+
+ 
 
   //  const [products , setProducts] = useState([])
 
@@ -34,12 +38,14 @@ const HomeScreen = () => {
   //       fetchProducts()
   //  },[]  )
 
-  const { data, isLoading , error} = useGetProductsQuery({ pageNumber })
- 
+  const { data, isLoading , error} = useGetProductsQuery({ pageNumber , keyword }) 
 
   return (
-   <>
+   <> 
+   { keyword && ( <Link to='/' className='btn btn-light mb-4' >Go Back</Link> )}
    <h1>Latest Products</h1>
+
+   
 
    {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>error.data.message || error.error</Message>) : (<>
         
@@ -54,7 +60,7 @@ const HomeScreen = () => {
           }
 
       </Row>
-      <Paginate totalpages={data.pages} currentpage={data.page}/>
+      <Paginate totalpages={data.pages} currentpage={data.page}  keyword={ keyword ? keyword : ''}/>
 
    </>)}
    
