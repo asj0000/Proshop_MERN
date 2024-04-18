@@ -56,7 +56,7 @@ const checkoutHandler = ()=>{
                       <Image src={item.image} alt={item.name} fluid rounded/>
                     </Col>
                     <Col md={3}>
-                      <Link to={`/products/${item._id}`}>
+                      <Link to={`/product/${item._id}`}>
                         {item.name}
                       </Link>
                     </Col>
