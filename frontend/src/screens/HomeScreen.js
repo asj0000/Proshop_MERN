@@ -8,6 +8,8 @@ import Paginate from '../components/Paginate.js'
 import { useGetProductsQuery } from '../slices/productsApiSlice.js'
 import Message from '../components/Message.js'
 import { Link } from 'react-router-dom'
+import ProductCarousel from '../components/ProductCarousel.js'
+import Meta from '../components/Meta.js'
 
 
 const HomeScreen = () => {
@@ -42,13 +44,14 @@ const HomeScreen = () => {
 
   return (
    <> 
-   { keyword && ( <Link to='/' className='btn btn-light mb-4' >Go Back</Link> )}
+   { !keyword ? <ProductCarousel/> : ( <Link to='/' className='btn btn-light mb-4' >Go Back</Link> )}
    <h1>Latest Products</h1>
 
    
 
    {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>error.data.message || error.error</Message>) : (<>
         
+          <Meta title='Home Page'/>
           <Row>
           
             

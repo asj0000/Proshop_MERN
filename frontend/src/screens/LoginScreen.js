@@ -7,7 +7,7 @@ import { useLoginMutation } from '../slices/usersApiSlice.js'
 import { setCredential } from '../slices/authSlice.js'
 import { toast } from 'react-toastify'
 import FormContainer from '../components/FormContainer.js' 
-
+import Meta from '../components/Meta.js'
 
 const LoginScreen = () => {
 
@@ -50,7 +50,9 @@ const LoginScreen = () => {
 
 
   return (
+    
     <FormContainer>
+      <Meta title='Login Page'/>
       <h1>Sign In</h1>
 
       <Form onSubmit={submitHandler}>

@@ -12,6 +12,7 @@ import { toast } from 'react-toastify'
 import { useGetProductQuery , useCreateReviewMutation } from '../slices/productsApiSlice'
 import { useDispatch , useSelector } from "react-redux"
 import Message from "../components/Message.js"
+import Meta from '../components/Meta.js';
 
 const ProductScreen = () => {
 
@@ -88,7 +89,7 @@ const ProductScreen = () => {
    
    { isLoading ? (<Loader/>) : error ?(<Message variant='danger'>error.data.message || error.error</Message>) : (
     <>
-   
+   <Meta title={product.name} description={product.description} />
    <Row>
 
    <Col md={5}>

@@ -68,10 +68,21 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: ['Products']
+    }),
+
+
+    //To GET top products that will be used in Carousel
+    getTopProducts: builder.query({
+      query: ()=>({
+        url:  `${PRODUCTS_URL}/top`
+      }),
+      keepUnusedDataFor: 5
     })
+  
 
   }),
 
+  
 })
 
 export const {  useGetProductsQuery  , 
@@ -80,4 +91,5 @@ export const {  useGetProductsQuery  ,
                 useUpdateProductMutation , 
                 useUploadProductImageMutation ,
                 useDeleteProductMutation,
-                useCreateReviewMutation,  }  = productsApiSlice;
+                useCreateReviewMutation, 
+                useGetTopProductsQuery }  = productsApiSlice;
