@@ -105,7 +105,8 @@ const EditScreen = () => {
       <FormContainer  onSubmit={submitHandler}>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
-
+        {loadingUpload && <Loader />}
+       
         { isLoading ? (
           <Loader />
         ) : error ? (
